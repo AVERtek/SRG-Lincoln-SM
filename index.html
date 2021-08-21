@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ site.lang | default: "en-US" }}">
+ 
 <head>
  <meta charset="UTF-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  
+ </head>
  <!-- Loads <model-viewer> for modern browsers: -->
  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
   
@@ -77,6 +79,23 @@ var promise = sound.play();
       }
    </script>
  
+<script>
+/**
+* Function that registers a click on an outbound link in Analytics.
+* This function takes a valid URL string as an argument, and uses that URL string
+* as the event label. Setting the transport method to 'beacon' lets the hit be sent
+* using 'navigator.sendBeacon' in browser that support it.
+*/
+var getOutboundLink = function(url) {
+  gtag('event', 'click', {
+    'event_category': 'outbound',
+    'event_label': url,
+    'transport_type': 'beacon',
+    'event_callback': function(){document.location = url;}
+  });
+}
+</script>
+
 <style> 
  
 .container {
@@ -100,7 +119,7 @@ var promise = sound.play();
     display: block;
 }
 </style>
-</head>
+
 <body>
 
 <!--<h1>The column-count Property</h1> -->
@@ -111,26 +130,49 @@ var promise = sound.play();
       <img class="marginauto" src="images/LincolnSM_Logo_LiveWork_blue.png" alt="Logo" style="width: auto; height: 100px"> 
       
     <div class="card">
- <model-viewer src="Models/Bahay_1 bed Apartment_6_For Collider.glb? autoplay animation-name="" id="interaction" ar ar-modes="scene-viewer webxr quick-look" ios-src="Models/usdz_bahay_1_bed_apartment_6_for_collider___1615566350004.usdz "alt="Lincoln SM" auto-rotate-delay="0" ar-scale="auto" style="z-index: 1; width: 100%; height: 480px; position: static; "><button slot="ar-button" style="z-index: 9; background-color: white; border-radius: 8px; border: 1 px solid white; position: absolute; bottom: height: auto; width: auto; ">
+      <model-viewer src="Models/Bahay_1 bed Apartment_6_For Collider.glb? 
+                         autoplay animation-name="" id="interaction" ar ar-modes="scene-viewer webxr quick-look" ios-src="Models/usdz_bahay_1_bed_apartment_6_for_collider___1615566350004.usdz"
+                         alt="Lincoln SM" auto-rotate-delay="0" ar-scale="auto"
+                         slot= "progress-bar"
+                         style="z-index: 1; width: 100%; height: 480px; position: static; ">
+                         <button slot="ar-button" 
+                         style="z-index: 9; background-color: white; border-radius: 8px; border: 1 px solid white; position: absolute; top: 2px; right: 0; height: auto; width: auto; ">
 
       👆 AR Click Here
        </button>   
     
     <div class="card"> 
-<model-viewer id="model-viewer" loading="eager" src="Models/Bahay_1 bed Apartment_6_For Collider.glb? camera-controls camera-orbit="0deg 30deg 30%" autoplay animation-name="" id="reveal" ios-src="Models/usdz_bahay_1_bed_apartment_6_for_collider___1615566350004.usdz" alt="Lincoln SM" auto-rotate-delay="0" camera-controls alt="Lincoln SM style="z-index: 2; width: 100%; height: 500px; position: static; ">
+<model-viewer id="model-viewer" loading="eager" src="Models/Bahay_1 bed Apartment_6_For Collider.glb? camera-controls 
+              camera-orbit="0deg 30deg 30%" autoplay animation-name="" id="reveal" 
+              ios-src="Models/usdz_bahay_1_bed_apartment_6_for_collider___1615566350004.usdz" alt="Lincoln SM" auto-rotate-delay="0" camera-controls alt="Lincoln SM" 
+              style="z-index: 2; width: 100%; height: 500px; position: static; ">
 </model-viewer>
-
-    </div>
+  </div>
       
 </model-viewer>
     </div>   
    
-     <script>    
+     <section class="attribution">
+        <div>
+          <span>
+            <h1 style="text-align: center;" markdown="1"><p style="font-family:helvetica neue bold">Listen to Narration</p></h1>
+              <p align="center">
+              <span>
+              <audio controls autoplay loop id="sound">
+                <source src="Sound/K18 VOICE.mp3"/>
+              </audio
+            ></span> 
+             </p>
+            </span>
+         </div>
+   </section>
+   <script>    
         window.addEventListener("load", () => {
           Sync("#model-viewer", "#sound");
         });
       </script>
      
+ <br>
     <div class="card">
     <h2 style="text-align: center;" markdown="1"><p style="font-family:Andis"><b>EXPLORE OUR FLOORPLANS:</b><a href="https://www.thewestsidecollection.com/riva-santa-monica-ca/floorplans?utm_source=AVERtek&utm_medium=AR" onclick="getOutboundLink('https://www.thewestsidecollection.com/riva-santa-monica-ca/floorplans?utm_source=AVERtek&utm_medium=AR');return false;"<b>HERE</p></b></h2></a>
     <br>
